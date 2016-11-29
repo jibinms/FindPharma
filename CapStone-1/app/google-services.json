@@ -1,6 +1,10 @@
 {
   "project_info": {
+<<<<<<< HEAD
     "project_number": "579666324362",
+=======
+    "project_number": "",
+>>>>>>> 5a5f7fba8e40f07ef592fd15c480ed9aeeb65d08
     "firebase_url": "",
     "project_id": "",
     "storage_bucket": ""
