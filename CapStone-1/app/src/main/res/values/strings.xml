@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">FindPharma</string>
+    <string name="medicine">Medicine</string>
+    <string name="pharmacy">Pharmacy</string>
+    <string name="title_activity_medicine_details">MedicineDetailsActivity</string>
+    <string name="product_image">Product Image</string>
+    <string name="product_details">Product details</string>
+    <string name="rate">Rate</string>
+    <string name="available_pharmacy">Available pharmacy</string>
+    <string name="producer">Producer</string>
+    <string name="contents">Contents</string>
+    <string name="opening_and_closing_time">Opening and closing time</string>
+    <string name="location">Location</string>
+    <string name="product_trans">Product Transition</string>
+    <string name="please_wait">Please wait, Loading data ...</string>
+    <string name="no_data_is_available_retry">No data is available. Retry?</string>
+    <string name="error_text">Error text</string>
+    <string name="timing">Timing :</string>
+    <string name="address">Address :</string>
+    <string name="cant_make_call">Can\'t make call.</string>
+    <string name="failed_map">Failed to load map</string>
+    <string name="title">Title</string>
+    <string name="title_activity_notification_list">NotificationListActivity</string>
+    <string name="no_net">No Network available.Please try again after some time.</string>
+    <string name="medicines">Medicines</string>
+
+</resources>

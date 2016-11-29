@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pharmaciesImage">
+        <item>https://ippblog2013.files.wordpress.com/2013/04/tescos_pharmacy.jpg</item>
+        <item>http://d8xxy3dl0iwm6.cloudfront.net/wp-content/uploads/importedmedia/blogmedia-55863.jpg</item>
+        <item>http://smokefreecapital.org/wp-content/uploads/2012/11/Pharmacy2.jpg</item>
+        <item>http://cdn4.pchc.com/wp-content/uploads/2013/09/pharmacy_lg.jpg?x53528</item>
+        <item>http://media.truelocal.com.au/9/C/96A0517A-983E-4343-A073-5FD57BA6459C/1460372259906_pharmacy-glenelg-national-pharmacies-jetty-road-glenelg-4-938x704.jpg</item>
+        <item>http://tweeztiti.strefa.pl/images/pharmacy23.jpg</item>
+    </string-array>
+    <string-array name="medicineImage">
+        <item>http://medicineforsure.com/wp-content/uploads/2015/12/shutterstock_medicine_tablets.jpg</item>
+        <item>https://zambiadailynation.com/wp-content/uploads/2016/03/medicines-2.jpg</item>
+        <item>http://36qzne13engh1r8jdw3w4544.wpengine.netdna-cdn.com/wp-content/uploads/2010/10/medicinePills1.jpg</item>
+        <item>https://today.duke.edu/sites/default/files/legacy_files/stories/OperationMedicineDrop_web_H_0.jpg</item>
+        <item>http://cdn.wallpapersafari.com/61/84/KmPdAz.jpg</item>
+        <item>https://skunkstripe.files.wordpress.com/2011/06/medicine.jpg</item>
+    </string-array>
+</resources>
