@@ -1,4 +1,4 @@
-package wear.sunshine.android.example.com.capstone_1.FCM;
+package wear.sunshine.android.example.com.capstone_1.fcm;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
