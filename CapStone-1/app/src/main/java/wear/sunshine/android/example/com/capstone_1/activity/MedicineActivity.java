@@ -31,11 +31,11 @@ public class MedicineActivity extends ListBaseActivity {
     }
 
     /**
-     *Loading all medicine
+     * Loading all medicine
      */
     private void loadMedicines() {
 
-        if  (FindPharma.isNetworkAvailable()){
+        if (FindPharma.isNetworkAvailable()) {
             showProgressDialog();
             FindPharma.sFindPharmaWebservice.getMedicine(0).enqueue(new Callback<List<Medicine>>() {
                 @Override
@@ -50,7 +50,7 @@ public class MedicineActivity extends ListBaseActivity {
                             mPharmacyAdapter.notifyDataSetChanged();
 
                             try {
-                                getContentResolver().delete(MedicineProvider.CONTENT_URI,null,null);
+                                getContentResolver().delete(MedicineProvider.CONTENT_URI, null, null);
                                 getContentResolver().applyBatch("wear.sunshine.android.example.com.capstone_1.content.MedicineProvider",
                                         Utility.buildBatchOperation((ArrayList<Medicine>) response.body()));
                             } catch (RemoteException e) {
@@ -64,6 +64,7 @@ public class MedicineActivity extends ListBaseActivity {
                     mRecyclerView.setVisibility(View.GONE);
                     mErrorText.setVisibility(View.VISIBLE);
                 }
+
                 @Override
                 public void onFailure(Call<List<Medicine>> call, Throwable t) {
                     dismissPendingProgressDialog();
@@ -71,16 +72,17 @@ public class MedicineActivity extends ListBaseActivity {
                     mErrorText.setVisibility(View.VISIBLE);
                 }
             });
-        }else{
-            Snackbar.make(findViewById(android.R.id.content), getString(R.string.no_net) , Snackbar.LENGTH_SHORT).show();
+        } else {
+            Snackbar.make(findViewById(android.R.id.content), getString(R.string.no_net), Snackbar.LENGTH_SHORT).show();
         }
     }
+
     /**
      * Search medicine api call
      */
     private void loadMedicine(String text) {
         //showProgressDialog();
-        if  (FindPharma.isNetworkAvailable()){
+        if (FindPharma.isNetworkAvailable()) {
             FindPharma.sFindPharmaWebservice.searchMedicineName(text).enqueue(new Callback<List<Medicine>>() {
                 @Override
                 public void onResponse(Call<List<Medicine>> call, Response<List<Medicine>> response) {
@@ -98,6 +100,7 @@ public class MedicineActivity extends ListBaseActivity {
                     mRecyclerView.setVisibility(View.GONE);
                     mErrorText.setVisibility(View.VISIBLE);
                 }
+
                 @Override
                 public void onFailure(Call<List<Medicine>> call, Throwable t) {
                     dismissPendingProgressDialog();
@@ -105,14 +108,14 @@ public class MedicineActivity extends ListBaseActivity {
                     mErrorText.setVisibility(View.VISIBLE);
                 }
             });
-        }else{
-            Snackbar.make(findViewById(android.R.id.content), getString(R.string.no_net) , Snackbar.LENGTH_SHORT).show();
+        } else {
+            Snackbar.make(findViewById(android.R.id.content), getString(R.string.no_net), Snackbar.LENGTH_SHORT).show();
         }
     }
 
 
-    public void reloadPharmacies(View v){
-        mPharmacyAdapter = new PharmacyAdapter(this,new ArrayList<Pharmacy>());
+    public void reloadPharmacies(View v) {
+        mPharmacyAdapter = new PharmacyAdapter(this, new ArrayList<Pharmacy>());
         mRecyclerView.setAdapter(mPharmacyAdapter);
         loadMedicines();
     }
@@ -124,10 +127,10 @@ public class MedicineActivity extends ListBaseActivity {
     @Override
     public void searchDataChanged(String s) {
 
-        if(s.length()>2){
+        if (s.length() > 2) {
             loadMedicine(s);
-        }else if (s.length()==0){
-            mPharmacyAdapter = new PharmacyAdapter(this,new ArrayList<Pharmacy>());
+        } else if (s.length() == 0) {
+            mPharmacyAdapter = new PharmacyAdapter(this, new ArrayList<Pharmacy>());
             mRecyclerView.setAdapter(mPharmacyAdapter);
             loadMedicines();
         }

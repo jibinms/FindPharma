@@ -2,7 +2,6 @@ package wear.sunshine.android.example.com.capstone_1.utilities;
 
 import android.content.ContentProviderOperation;
 
-
 import java.util.ArrayList;
 
 import wear.sunshine.android.example.com.capstone_1.content.MedicineProvider;
@@ -14,11 +13,11 @@ import wear.sunshine.android.example.com.capstone_1.response.Medicine;
 
 public class Utility {
 
-    public static  ArrayList<ContentProviderOperation> buildBatchOperation(ArrayList<Medicine> medicines){
+    public static ArrayList<ContentProviderOperation> buildBatchOperation(ArrayList<Medicine> medicines) {
 
         ArrayList<ContentProviderOperation> batchOperations = new ArrayList<>();
 
-        for (Medicine medicine:medicines ) {
+        for (Medicine medicine : medicines) {
             ContentProviderOperation.Builder builder = ContentProviderOperation.newInsert(
                     MedicineProvider.CONTENT_URI);
             builder.withValue(MedicineProvider.NAME, medicine.getTradeName());

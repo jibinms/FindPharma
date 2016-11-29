@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
-
 import wear.sunshine.android.example.com.capstone_1.R;
 import wear.sunshine.android.example.com.capstone_1.content.MedicineProvider;
 
@@ -15,7 +14,7 @@ import wear.sunshine.android.example.com.capstone_1.content.MedicineProvider;
  * Created by jibin on 28/11/16.
  */
 
-public class PharmaWidgetFactory  implements RemoteViewsService.RemoteViewsFactory {
+public class PharmaWidgetFactory implements RemoteViewsService.RemoteViewsFactory {
 
     private Cursor mCursor;
     private Context mContext;
@@ -33,8 +32,8 @@ public class PharmaWidgetFactory  implements RemoteViewsService.RemoteViewsFacto
         mCursor = mContext.getContentResolver().query(MedicineProvider.CONTENT_URI,
                 new String[]{MedicineProvider._ID, MedicineProvider.NAME, MedicineProvider.COMPANY,
                         MedicineProvider.LOCAL_AGENT, MedicineProvider.IMAGE_URL},
-                        null,
-                        null,
+                null,
+                null,
                 null);
     }
 
@@ -46,7 +45,7 @@ public class PharmaWidgetFactory  implements RemoteViewsService.RemoteViewsFacto
         mCursor = mContext.getContentResolver().query(MedicineProvider.CONTENT_URI,
                 new String[]{MedicineProvider._ID, MedicineProvider.NAME, MedicineProvider.COMPANY,
                         MedicineProvider.LOCAL_AGENT, MedicineProvider.IMAGE_URL},
-               null,null,
+                null, null,
                 null);
     }
 
@@ -59,7 +58,7 @@ public class PharmaWidgetFactory  implements RemoteViewsService.RemoteViewsFacto
 
     @Override
     public int getCount() {
-        return mCursor!=null ? mCursor.getCount():0;
+        return mCursor != null ? mCursor.getCount() : 0;
     }
 
     @Override
@@ -67,7 +66,7 @@ public class PharmaWidgetFactory  implements RemoteViewsService.RemoteViewsFacto
         final RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.pharmacy_list_item_widget);
 
         if (mCursor.moveToPosition(position)) {
-            remoteViews.setTextViewText(R.id.title,  mCursor.getString(1));
+            remoteViews.setTextViewText(R.id.title, mCursor.getString(1));
             remoteViews.setTextViewText(R.id.address, mCursor.getString(2));
             remoteViews.setTextViewText(R.id.timing, mCursor.getString(3));
 

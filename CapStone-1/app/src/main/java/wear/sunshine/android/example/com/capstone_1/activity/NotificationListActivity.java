@@ -15,7 +15,8 @@ import wear.sunshine.android.example.com.capstone_1.R;
 
 public class NotificationListActivity extends AppCompatActivity {
 
-    public static final String DATA ="data_" ;
+    public static final String DATA = "data_";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +24,7 @@ public class NotificationListActivity extends AppCompatActivity {
 
         if (getIntent().hasExtra(DATA)) {
 
-            TextView textView=(TextView)findViewById(R.id.errorText);
+            TextView textView = (TextView) findViewById(R.id.errorText);
             textView.setText(getIntent().getStringExtra(DATA));
         }
 

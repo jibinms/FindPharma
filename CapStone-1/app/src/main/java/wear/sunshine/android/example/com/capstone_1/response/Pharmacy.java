@@ -2,40 +2,52 @@ package wear.sunshine.android.example.com.capstone_1.response;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.v4.content.ContextCompat;
 
-import java.util.Random;
-
-import wear.sunshine.android.example.com.capstone_1.R;
 import wear.sunshine.android.example.com.capstone_1.app.FindPharma;
 
 /**
  * Created by jibin on 23/11/16.
  */
 
-public class Pharmacy implements Parcelable{
+public class Pharmacy implements Parcelable {
 
-    private String Name;
+    public static final Parcelable.Creator CREATOR
+            = new Parcelable.Creator() {
+        public Pharmacy createFromParcel(Parcel in) {
+            return new Pharmacy(in);
+        }
 
-    private String Phone;
+        public Pharmacy[] newArray(int size) {
+            return new Pharmacy[size];
+        }
+    };
     public String imageUrl;
+    private String Name;
+    private String Phone;
     private String Street;
-
     private String Region;
-
     private String TotalCount;
-
     private String Area;
-
     private String Latitude;
-
     private String Longitude;
-
     private String ClosingTime;
-
     private String Wilayat;
-
     private String StartingTime;
+
+    public Pharmacy(Parcel in) {
+        Name = in.readString();
+        Phone = in.readString();
+        imageUrl = in.readString();
+        Street = in.readString();
+        Region = in.readString();
+        TotalCount = in.readString();
+        Area = in.readString();
+        Latitude = in.readString();
+        Longitude = in.readString();
+        ClosingTime = in.readString();
+        Wilayat = in.readString();
+        StartingTime = in.readString();
+    }
 
     public String getName() {
         return Name;
@@ -126,7 +138,7 @@ public class Pharmacy implements Parcelable{
     }
 
     public String getImageUrl(int pos) {
-        imageUrl = FindPharma.imgUrl(true,pos);
+        imageUrl = FindPharma.imgUrl(true, pos);
         return imageUrl;
     }
 
@@ -150,36 +162,10 @@ public class Pharmacy implements Parcelable{
         parcel.writeString(TotalCount);
         parcel.writeString(Area);
         parcel.writeString(Latitude);
-        parcel.writeString( Longitude);
-        parcel.writeString( ClosingTime);
-        parcel.writeString( Wilayat);
-        parcel.writeString( StartingTime);
+        parcel.writeString(Longitude);
+        parcel.writeString(ClosingTime);
+        parcel.writeString(Wilayat);
+        parcel.writeString(StartingTime);
 
-    }
-    public static final Parcelable.Creator CREATOR
-            = new Parcelable.Creator() {
-        public Pharmacy createFromParcel(Parcel in) {
-            return new Pharmacy(in);
-        }
-
-        public Pharmacy[] newArray(int size) {
-            return new Pharmacy[size];
-        }
-    };
-
-
-    public Pharmacy(Parcel in) {
-        Name=in.readString();
-        Phone=in.readString();
-        imageUrl=in.readString();
-        Street=in.readString();
-        Region=in.readString();
-        TotalCount=in.readString();
-        Area=in.readString();
-        Latitude=in.readString();
-        Longitude=in.readString();
-        ClosingTime=in.readString();
-        Wilayat=in.readString();
-        StartingTime=in.readString();
     }
 }

@@ -38,17 +38,16 @@
             android:textColor="@android:color/white"
             android:text="@string/medicine"
             android:contentDescription="@string/medicine"
+            android:layout_marginEnd="@dimen/margin_16"
             android:layout_marginRight="@dimen/margin_16"
             android:background="@drawable/ic_hexagon"/>
 
         <Button
-            android:layout_toRightOf="@+id/medicine"
             android:text="@string/pharmacy"
             android:textColor="@android:color/white"
             android:id="@+id/pharmacy"
             android:layout_width="wrap_content"
             android:contentDescription="@string/pharmacy"
-            android:layout_alignParentBottom="true"
             android:layout_height="150dp"
             android:background="@drawable/ic_hexagon"/>
     </LinearLayout>

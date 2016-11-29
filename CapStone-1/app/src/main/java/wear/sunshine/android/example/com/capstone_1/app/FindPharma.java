@@ -30,19 +30,19 @@ public class FindPharma extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        sFindPharma= this;
+        sFindPharma = this;
     }
 
-    public static boolean isNetworkAvailable(){
+    public static boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager =
                 (ConnectivityManager) sFindPharma.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = connectivityManager.getActiveNetworkInfo();
 
-        return netInfo !=null && netInfo.isConnected();
+        return netInfo != null && netInfo.isConnected();
 
     }
 
-    public static String imgUrl(boolean isPharma,int pos){
-        return isPharma ? sFindPharma.getResources().getStringArray(R.array.pharmaciesImage)[pos%6]: sFindPharma.getResources().getStringArray(R.array.medicineImage)[pos%6];
+    public static String imgUrl(boolean isPharma, int pos) {
+        return isPharma ? sFindPharma.getResources().getStringArray(R.array.pharmaciesImage)[pos % 6] : sFindPharma.getResources().getStringArray(R.array.medicineImage)[pos % 6];
     }
 }

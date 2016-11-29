@@ -1,27 +1,27 @@
 {
   "project_info": {
     "project_number": "579666324362",
-    "firebase_url": "https://dgcz-87b4a.firebaseio.com",
-    "project_id": "dgcz-87b4a",
-    "storage_bucket": "dgcz-87b4a.appspot.com"
+    "firebase_url": "",
+    "project_id": "",
+    "storage_bucket": ""
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:579666324362:android:94abcb2d6de0ff9b",
+        "mobilesdk_app_id": "1:",
         "android_client_info": {
           "package_name": "wear.sunshine.android.example.com.capstone_1"
         }
       },
       "oauth_client": [
         {
-          "client_id": "579666324362-5tr0vv4l2pss3r7pr5k3cp7kle9og3a5.apps.googleusercontent.com",
+          "client_id": "",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCjhRraICcnudsOE3fN2VCbAoOuc2ei4FY"
+          "current_key": ""
         }
       ],
       "services": {

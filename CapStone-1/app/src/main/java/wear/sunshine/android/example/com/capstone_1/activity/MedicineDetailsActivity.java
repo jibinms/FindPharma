@@ -47,8 +47,8 @@ import wear.sunshine.android.example.com.capstone_1.response.Pharmacy;
 public class MedicineDetailsActivity extends BaseActivity implements LocationListener,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
-    private static final int CALL_REQUEST =150 ;
-    private static final int LOCATION_REQUEST =152 ;
+    private static final int CALL_REQUEST = 150;
+    private static final int LOCATION_REQUEST = 152;
     private static final long POLLING_FREQ = 1000 * 30;
     private static final long FASTEST_INTERVAL = 1000 * 5;
     private static String sMapUrl = "http://maps.google.com/maps?saddr=%s,%s &daddr=%s,%s &mode=d";
@@ -79,21 +79,21 @@ public class MedicineDetailsActivity extends BaseActivity implements LocationLis
 
     private void initViews() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        mContents = (TextView)findViewById(R.id.contents);
-        mDetails = (TextView)findViewById(R.id.details);
-        mRate = (TextView)findViewById(R.id.rate);
-        mPharmacy =(TextView)findViewById(R.id.pharmacyDetails);
-        mProducer=(TextView)findViewById(R.id.producer);
-        mTiming=(TextView)findViewById(R.id.timing);
-        mMapIcon=(ImageView)findViewById(R.id.map);
-        mProductImage=(ImageView) findViewById(R.id.imageProd);
+        mContents = (TextView) findViewById(R.id.contents);
+        mDetails = (TextView) findViewById(R.id.details);
+        mRate = (TextView) findViewById(R.id.rate);
+        mPharmacy = (TextView) findViewById(R.id.pharmacyDetails);
+        mProducer = (TextView) findViewById(R.id.producer);
+        mTiming = (TextView) findViewById(R.id.timing);
+        mMapIcon = (ImageView) findViewById(R.id.map);
+        mProductImage = (ImageView) findViewById(R.id.imageProd);
 
         setSupportActionBar(toolbar);
 
-        try{
-                setPharmacyDetails((Pharmacy) getIntent().getParcelableExtra(PharmacyAdapter.INTENT_DATA));
-        }catch (ClassCastException e){
-            setMedicineDetails((Medicine)getIntent().getParcelableExtra(PharmacyAdapter.INTENT_DATA));
+        try {
+            setPharmacyDetails((Pharmacy) getIntent().getParcelableExtra(PharmacyAdapter.INTENT_DATA));
+        } catch (ClassCastException e) {
+            setMedicineDetails((Medicine) getIntent().getParcelableExtra(PharmacyAdapter.INTENT_DATA));
         }
 
 
@@ -101,50 +101,49 @@ public class MedicineDetailsActivity extends BaseActivity implements LocationLis
 
     private void setPharmacyDetails(Pharmacy pharmacy) {
 
-        if(pharmacy.getName()!=null){
+        if (pharmacy.getName() != null) {
             setTitle(pharmacy.getName());
         }
 
-        if(pharmacy.imageUrl!=null)
-        Glide.with(getApplicationContext()).load(pharmacy.imageUrl).placeholder(android.R.drawable.ic_menu_crop).into(mProductImage);
+        if (pharmacy.imageUrl != null)
+            Glide.with(getApplicationContext()).load(pharmacy.imageUrl).placeholder(android.R.drawable.ic_menu_crop).into(mProductImage);
 
-        if(!TextUtils.isEmpty(pharmacy.getStartingTime())&&!TextUtils.isEmpty(pharmacy.getClosingTime())) {
-            mTiming.setText(Html.fromHtml(getString(R.string.timing)+"\n <font color=\"red\">" + pharmacy.getStartingTime() + " - " + pharmacy.getClosingTime()+"</font>"));
+        if (!TextUtils.isEmpty(pharmacy.getStartingTime()) && !TextUtils.isEmpty(pharmacy.getClosingTime())) {
+            mTiming.setText(Html.fromHtml(getString(R.string.timing) + "\n <font color=\"red\">" + pharmacy.getStartingTime() + " - " + pharmacy.getClosingTime() + "</font>"));
         }
         mDetails.setText(R.string.address);
 
-        if(!TextUtils.isEmpty(pharmacy.getStreet())) {
-            mRate.setText("     "+pharmacy.getStreet());
+        if (!TextUtils.isEmpty(pharmacy.getStreet())) {
+            mRate.setText("     " + pharmacy.getStreet());
         }
-        if(!TextUtils.isEmpty(pharmacy.getArea())) {
-            mPharmacy.setText("     "+pharmacy.getArea());
-        }
-
-        if(!TextUtils.isEmpty(pharmacy.getRegion())) {
-            mProducer.setText("     "+pharmacy.getRegion());
+        if (!TextUtils.isEmpty(pharmacy.getArea())) {
+            mPharmacy.setText("     " + pharmacy.getArea());
         }
 
-        if (!TextUtils.isEmpty(pharmacy.getPhone())){
+        if (!TextUtils.isEmpty(pharmacy.getRegion())) {
+            mProducer.setText("     " + pharmacy.getRegion());
+        }
+
+        if (!TextUtils.isEmpty(pharmacy.getPhone())) {
             mPhNo = pharmacy.getPhone();
         }
-        if (!TextUtils.isEmpty(pharmacy.getLatitude())){
+        if (!TextUtils.isEmpty(pharmacy.getLatitude())) {
             mLat = pharmacy.getLatitude();
         }
 
-        if (!TextUtils.isEmpty(pharmacy.getLongitude())){
+        if (!TextUtils.isEmpty(pharmacy.getLongitude())) {
             mLongi = pharmacy.getLongitude();
         }
-
-
     }
 
-    public  void mapViewClicked(View v){
+    public void mapViewClicked(View v) {
         checkPermissions(Manifest.permission.ACCESS_FINE_LOCATION, LOCATION_REQUEST);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        if (mPhNo!=null) {
+        if (mPhNo != null) {
             getMenuInflater().inflate(R.menu.call, menu);
         }
         return true;
@@ -153,14 +152,15 @@ public class MedicineDetailsActivity extends BaseActivity implements LocationLis
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.call){
+        if (item.getItemId() == R.id.call) {
             checkPermissions(Manifest.permission.CALL_PHONE, CALL_REQUEST);
         }
 
-        if(item.getItemId() == R.id.share){
-            Intent intent2 = new Intent(); intent2.setAction(Intent.ACTION_SEND);
+        if (item.getItemId() == R.id.share) {
+            Intent intent2 = new Intent();
+            intent2.setAction(Intent.ACTION_SEND);
             intent2.setType("text/plain");
-            intent2.putExtra(Intent.EXTRA_TEXT, getTitle()+": "+mPhNo );
+            intent2.putExtra(Intent.EXTRA_TEXT, getTitle() + ": " + mPhNo);
             startActivity(Intent.createChooser(intent2, "Share via"));
         }
         return super.onOptionsItemSelected(item);
@@ -168,32 +168,32 @@ public class MedicineDetailsActivity extends BaseActivity implements LocationLis
 
     private void setMedicineDetails(Medicine medicine) {
 
-        TextView title =(TextView)findViewById(R.id.nameT);
-        if(medicine.getTradeName()!=null){
+        TextView title = (TextView) findViewById(R.id.nameT);
+        if (medicine.getTradeName() != null) {
             title.setText(medicine.getTradeName());
         }
         mMapIcon.setVisibility(View.GONE);
-        if(medicine.imageUrl!=null)
+        if (medicine.imageUrl != null)
             Glide.with(getApplicationContext()).load(medicine.imageUrl).placeholder(android.R.drawable.ic_menu_crop).into(mProductImage);
 
-        if(!TextUtils.isEmpty(medicine.getCompany())) {
-            mProducer.setText("     "+medicine.getCompany());
+        if (!TextUtils.isEmpty(medicine.getCompany())) {
+            mProducer.setText("     " + medicine.getCompany());
         }
 
-        if(!TextUtils.isEmpty(medicine.getLocalAgent())) {
-            mTiming.setText(Html.fromHtml(getString(R.string.available_pharmacy)+": \n <font color=\"black\">" + medicine.getLocalAgent()+ "</font>"));
+        if (!TextUtils.isEmpty(medicine.getLocalAgent())) {
+            mTiming.setText(Html.fromHtml(getString(R.string.available_pharmacy) + ": \n <font color=\"black\">" + medicine.getLocalAgent() + "</font>"));
         }
-        if(!TextUtils.isEmpty(medicine.getRate())) {
-            mPharmacy.setText("     "+medicine.getRate());
-        }
-
-        if(!TextUtils.isEmpty(medicine.getPackSize())) {
-            mRate.setText("     "+medicine.getPackSize());
+        if (!TextUtils.isEmpty(medicine.getRate())) {
+            mPharmacy.setText("     " + medicine.getRate());
         }
 
+        if (!TextUtils.isEmpty(medicine.getPackSize())) {
+            mRate.setText("     " + medicine.getPackSize());
+        }
 
 
     }
+
     /**
      * Permission check to handle marshmallow and above versions permission issue
      */
@@ -213,20 +213,20 @@ public class MedicineDetailsActivity extends BaseActivity implements LocationLis
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
-        if (requestCode == CALL_REQUEST&& grantResults.length > 0 &&
+        if (requestCode == CALL_REQUEST && grantResults.length > 0 &&
                 grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Intent  mIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + mPhNo));
-            if(mIntent!=null)
-                startActivity(mIntent);
-        }else  if (requestCode == LOCATION_REQUEST && grantResults.length > 0 &&
+            Intent mIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + mPhNo));
+             startActivity(mIntent);
+        } else if (requestCode == LOCATION_REQUEST && grantResults.length > 0 &&
                 grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             accessCurrentLocation();
-        }else {
-            Snackbar.make(findViewById(android.R.id.content),requestCode==LOCATION_REQUEST ? getString(R.string.failed_map):getString(R.string.cant_make_call),Snackbar.LENGTH_SHORT).show();
-          //  Toast.makeText(this, R.string.cant_make_call, Toast.LENGTH_SHORT).show();
+        } else {
+            Snackbar.make(findViewById(android.R.id.content), requestCode == LOCATION_REQUEST ? getString(R.string.failed_map) : getString(R.string.cant_make_call), Snackbar.LENGTH_SHORT).show();
+            //  Toast.makeText(this, R.string.cant_make_call, Toast.LENGTH_SHORT).show();
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
+
     /**
      * Checking status of google api client for accessing location
      */
@@ -282,7 +282,7 @@ public class MedicineDetailsActivity extends BaseActivity implements LocationLis
     @Override
     public void onConnectionSuspended(int i) {
 
-        Snackbar.make(findViewById(android.R.id.content),getString(R.string.failed_map),Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(android.R.id.content), getString(R.string.failed_map), Snackbar.LENGTH_SHORT).show();
     }
 
     /**
@@ -301,7 +301,7 @@ public class MedicineDetailsActivity extends BaseActivity implements LocationLis
                 e.printStackTrace();
             }
         } else {
-            Snackbar.make(findViewById(android.R.id.content),getString(R.string.failed_map),Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(android.R.id.content), getString(R.string.failed_map), Snackbar.LENGTH_SHORT).show();
 
         }
     }
@@ -355,7 +355,7 @@ public class MedicineDetailsActivity extends BaseActivity implements LocationLis
             }
         }
 
-        Snackbar.make(findViewById(android.R.id.content),getString(R.string.failed_map),Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(android.R.id.content), getString(R.string.failed_map), Snackbar.LENGTH_SHORT).show();
     }
 
     /**

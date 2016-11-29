@@ -36,7 +36,8 @@ public class MedicineProvider extends ContentProvider {
     static final int MEDICINE_ID = 2;
 
     static final UriMatcher uriMatcher;
-    static{
+
+    static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI(PROVIDER_NAME, "medicine", MEDICINE);
         uriMatcher.addURI(PROVIDER_NAME, "medicine/#", MEDICINE_ID);
@@ -53,8 +54,8 @@ public class MedicineProvider extends ContentProvider {
     static final String CREATE_DB_TABLE =
             " CREATE TABLE " + MEDICINE_TABLE_NAME +
                     " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + NAME+" TEXT NOT NULL,  "
-                    +COMPANY+" TEXT, " +LOCAL_AGENT+ " TEXT ,  "+IMAGE_URL+ " TEXT);";
+                    + NAME + " TEXT NOT NULL,  "
+                    + COMPANY + " TEXT, " + LOCAL_AGENT + " TEXT ,  " + IMAGE_URL + " TEXT);";
 
     /**
      * Helper class that actually creates and manages
@@ -62,7 +63,7 @@ public class MedicineProvider extends ContentProvider {
      */
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
-        DatabaseHelper(Context context){
+        DatabaseHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
 
@@ -73,7 +74,7 @@ public class MedicineProvider extends ContentProvider {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            db.execSQL("DROP TABLE IF EXISTS " +  MEDICINE_TABLE_NAME);
+            db.execSQL("DROP TABLE IF EXISTS " + MEDICINE_TABLE_NAME);
             onCreate(db);
         }
     }
@@ -89,7 +90,7 @@ public class MedicineProvider extends ContentProvider {
          */
 
         db = dbHelper.getWritableDatabase();
-        return (db == null)? false:true;
+        return (db == null) ? false : true;
     }
 
     @Override
@@ -97,7 +98,7 @@ public class MedicineProvider extends ContentProvider {
         /**
          * Add a new student record
          */
-        long rowID = db.insert(	MEDICINE_TABLE_NAME, "", values);
+        long rowID = db.insert(MEDICINE_TABLE_NAME, "", values);
 
         /**
          * If record is added successfully
@@ -113,7 +114,7 @@ public class MedicineProvider extends ContentProvider {
 
     @Override
     public Cursor query(Uri uri, String[] projection,
-                        String selection,String[] selectionArgs, String sortOrder) {
+                        String selection, String[] selectionArgs, String sortOrder) {
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
         qb.setTables(MEDICINE_TABLE_NAME);
 
@@ -123,21 +124,19 @@ public class MedicineProvider extends ContentProvider {
                 break;
 
             case MEDICINE_ID:
-                qb.appendWhere( _ID + "=" + uri.getPathSegments().get(1));
+                qb.appendWhere(_ID + "=" + uri.getPathSegments().get(1));
                 break;
 
             default:
         }
 
-        if (sortOrder == null || sortOrder == ""){
-            /**
-             * By default sort on student names
-             */
+        if (sortOrder == null || sortOrder.isEmpty()) {
+
             sortOrder = NAME;
         }
 
-        Cursor c = qb.query(db,	projection,	selection,
-                selectionArgs,null, null, sortOrder);
+        Cursor c = qb.query(db, projection, selection,
+                selectionArgs, null, null, sortOrder);
         /**
          * register to watch a content URI for changes
          */
@@ -148,15 +147,15 @@ public class MedicineProvider extends ContentProvider {
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         int count = 0;
-        switch (uriMatcher.match(uri)){
+        switch (uriMatcher.match(uri)) {
             case MEDICINE:
                 count = db.delete(MEDICINE_TABLE_NAME, selection, selectionArgs);
                 break;
 
             case MEDICINE_ID:
                 String id = uri.getPathSegments().get(1);
-                count = db.delete( MEDICINE_TABLE_NAME, _ID +  " = " + id +
-                                (!TextUtils.isEmpty(selection) ? "AND (" + selection + ')' : ""), selectionArgs);
+                count = db.delete(MEDICINE_TABLE_NAME, _ID + " = " + id +
+                        (!TextUtils.isEmpty(selection) ? "AND (" + selection + ')' : ""), selectionArgs);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
@@ -178,10 +177,10 @@ public class MedicineProvider extends ContentProvider {
             case MEDICINE_ID:
                 count = db.update(MEDICINE_TABLE_NAME, values,
                         _ID + " = " + uri.getPathSegments().get(1) +
-                                (!TextUtils.isEmpty(selection) ? "AND (" +selection + ')' : ""), selectionArgs);
+                                (!TextUtils.isEmpty(selection) ? "AND (" + selection + ')' : ""), selectionArgs);
                 break;
             default:
-                throw new IllegalArgumentException("Unknown URI " + uri );
+                throw new IllegalArgumentException("Unknown URI " + uri);
         }
 
         getContext().getContentResolver().notifyChange(uri, null);
@@ -190,7 +189,7 @@ public class MedicineProvider extends ContentProvider {
 
     @Override
     public String getType(Uri uri) {
-        switch (uriMatcher.match(uri)){
+        switch (uriMatcher.match(uri)) {
 
             case MEDICINE:
                 return "vnd.android.cursor.dir/vnd.capstone_1.medicine";

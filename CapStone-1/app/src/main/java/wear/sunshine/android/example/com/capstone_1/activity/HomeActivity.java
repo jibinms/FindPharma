@@ -87,9 +87,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             intent = new Intent(HomeActivity.this,PharmaciesActivity.class);
         }
 
-        if (intent !=null){
             startActivity(intent);
-        }
     }
 
     /**

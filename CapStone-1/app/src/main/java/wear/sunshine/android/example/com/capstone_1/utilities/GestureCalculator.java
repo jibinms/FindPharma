@@ -7,7 +7,7 @@ import android.view.MotionEvent;
  * Created by jibin on 25/11/16.
  */
 
-public abstract class GestureCalculator  extends GestureDetector.SimpleOnGestureListener {
+public abstract class GestureCalculator extends GestureDetector.SimpleOnGestureListener {
 
     private static final int SWIPE_DISTANCE_THRESHOLD = 100;
     private static final int SWIPE_VELOCITY_THRESHOLD = 100;

@@ -18,7 +18,6 @@ import wear.sunshine.android.example.com.capstone_1.response.Pharmacy;
 public class PharmaciesActivity extends ListBaseActivity {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +29,7 @@ public class PharmaciesActivity extends ListBaseActivity {
 
     private void loadPharmacy() {
 
-        if  (FindPharma.isNetworkAvailable()){
+        if (FindPharma.isNetworkAvailable()) {
             showProgressDialog();
             FindPharma.sFindPharmaWebservice.getPharmacies(0).enqueue(new Callback<List<Pharmacy>>() {
                 @Override
@@ -49,6 +48,7 @@ public class PharmaciesActivity extends ListBaseActivity {
                     mRecyclerView.setVisibility(View.GONE);
                     mErrorText.setVisibility(View.VISIBLE);
                 }
+
                 @Override
                 public void onFailure(Call<List<Pharmacy>> call, Throwable t) {
                     dismissPendingProgressDialog();
@@ -56,15 +56,15 @@ public class PharmaciesActivity extends ListBaseActivity {
                     mErrorText.setVisibility(View.VISIBLE);
                 }
             });
-        }else{
-            Snackbar.make(findViewById(android.R.id.content), getString(R.string.no_net) , Snackbar.LENGTH_SHORT).show();
+        } else {
+            Snackbar.make(findViewById(android.R.id.content), getString(R.string.no_net), Snackbar.LENGTH_SHORT).show();
         }
     }
 
 
     private void loadPharmacy(String text) {
         //showProgressDialog();
-        if  (FindPharma.isNetworkAvailable()){
+        if (FindPharma.isNetworkAvailable()) {
             FindPharma.sFindPharmaWebservice.searchPharmacy(text).enqueue(new Callback<List<Pharmacy>>() {
                 @Override
                 public void onResponse(Call<List<Pharmacy>> call, Response<List<Pharmacy>> response) {
@@ -82,6 +82,7 @@ public class PharmaciesActivity extends ListBaseActivity {
                     mRecyclerView.setVisibility(View.GONE);
                     mErrorText.setVisibility(View.VISIBLE);
                 }
+
                 @Override
                 public void onFailure(Call<List<Pharmacy>> call, Throwable t) {
                     dismissPendingProgressDialog();
@@ -89,14 +90,14 @@ public class PharmaciesActivity extends ListBaseActivity {
                     mErrorText.setVisibility(View.VISIBLE);
                 }
             });
-        }else{
-            Snackbar.make(findViewById(android.R.id.content), getString(R.string.no_net) , Snackbar.LENGTH_SHORT).show();
+        } else {
+            Snackbar.make(findViewById(android.R.id.content), getString(R.string.no_net), Snackbar.LENGTH_SHORT).show();
         }
     }
 
 
-    public void reloadPharmacies(View v){
-        mPharmacyAdapter = new PharmacyAdapter(this,new ArrayList<Pharmacy>());
+    public void reloadPharmacies(View v) {
+        mPharmacyAdapter = new PharmacyAdapter(this, new ArrayList<Pharmacy>());
         mRecyclerView.setAdapter(mPharmacyAdapter);
         loadPharmacy();
     }
@@ -104,10 +105,10 @@ public class PharmaciesActivity extends ListBaseActivity {
     @Override
     public void searchDataChanged(String s) {
 
-        if(s.length()>2){
+        if (s.length() > 2) {
             loadPharmacy(s);
-        }else if (s.length()==0){
-            mPharmacyAdapter = new PharmacyAdapter(this,new ArrayList<Pharmacy>());
+        } else if (s.length() == 0) {
+            mPharmacyAdapter = new PharmacyAdapter(this, new ArrayList<Pharmacy>());
             mRecyclerView.setAdapter(mPharmacyAdapter);
             loadPharmacy();
         }

@@ -2,7 +2,6 @@
     <string name="app_name">FindPharma</string>
     <string name="medicine">Medicine</string>
     <string name="pharmacy">Pharmacy</string>
-    <string name="title_activity_medicine_details">MedicineDetailsActivity</string>
     <string name="product_image">Product Image</string>
     <string name="product_details">Product details</string>
     <string name="rate">Rate</string>
@@ -23,5 +22,8 @@
     <string name="title_activity_notification_list">NotificationListActivity</string>
     <string name="no_net">No Network available.Please try again after some time.</string>
     <string name="medicines">Medicines</string>
+    <string name="search">Search</string>
+    <string name="call">Call</string>
+    <string name="share">Share</string>
 
 </resources>

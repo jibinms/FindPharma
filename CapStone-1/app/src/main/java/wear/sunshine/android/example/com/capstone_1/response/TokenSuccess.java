@@ -6,6 +6,7 @@ package wear.sunshine.android.example.com.capstone_1.response;
 public class TokenSuccess {
 
     private String status;
+    private int returnCode;
 
     public int getReturnCode() {
         return returnCode;
@@ -14,8 +15,6 @@ public class TokenSuccess {
     public void setReturnCode(int returnCode) {
         this.returnCode = returnCode;
     }
-
-    private int returnCode;
 
     public String getStatus() {
         return status;

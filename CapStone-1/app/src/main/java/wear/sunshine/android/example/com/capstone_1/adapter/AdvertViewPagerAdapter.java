@@ -18,15 +18,15 @@ import wear.sunshine.android.example.com.capstone_1.R;
  * Created by jibin on 25/11/16.
  */
 
-public class AdvertViewPagerAdapter  extends PagerAdapter {
+public class AdvertViewPagerAdapter extends PagerAdapter {
 
     private Context mContext;
     private String[] mImagesBackground;
     private LayoutInflater mInflater;
 
-    public AdvertViewPagerAdapter(Context context,  String[] viewPagerImagesBackground) {
+    public AdvertViewPagerAdapter(Context context, String[] viewPagerImagesBackground) {
         mContext = context;
-        this.mImagesBackground =viewPagerImagesBackground;
+        this.mImagesBackground = viewPagerImagesBackground;
     }
 
     @Override
